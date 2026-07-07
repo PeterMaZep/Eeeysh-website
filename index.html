@@ -122,6 +122,7 @@
         .section:nth-child(4) { animation-delay: 0.20s; }
         .section:nth-child(5) { animation-delay: 0.25s; }
         .section:nth-child(6) { animation-delay: 0.30s; }
+        .section:nth-child(7) { animation-delay: 0.35s; }
 
         @keyframes fadeUp {
             0% { opacity: 0; transform: translateY(35px); }
@@ -295,6 +296,124 @@
         }
         .hero .cta-btn:hover i {
             transform: translateX(6px);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin: 0.5rem 0 1.2rem;
+        }
+        .gallery-header h3 {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+        }
+        .gallery-header .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .gallery-header .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            backdrop-filter: blur(8px);
+        }
+        .gallery-header .filter-btn:hover,
+        .gallery-header .filter-btn.active {
+            background: var(--glass-border);
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .gallery-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.8rem;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 25px var(--shadow-color);
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery-item .image-container {
+            width: 100%;
+            padding-top: 75%;
+            position: relative;
+            background: var(--card-bg);
+            overflow: hidden;
+        }
+        .gallery-item .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item .image-container .placeholder-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-secondary);
+            opacity: 0.1;
+            font-size: 3.5rem;
+        }
+        .gallery-item .item-info {
+            padding: 1rem 1.2rem 1.2rem;
+        }
+        .gallery-item .item-info h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.1rem;
+        }
+        .gallery-item .item-info p {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+        .gallery-item .item-tag {
+            position: absolute;
+            top: 0.8rem;
+            right: 0.8rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: 1px solid var(--glass-border);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03) translateY(-6px);
+            border-color: var(--text-secondary);
+            box-shadow: 0 25px 60px var(--shadow-color);
+            background: var(--glass-border);
+        }
+        .gallery-item:hover .image-container img {
+            transform: scale(1.06);
         }
 
         /* ===== ABOUT ===== */
@@ -496,6 +615,7 @@
             .about-section { grid-template-columns: 1fr; gap: 1.5rem; }
             .about-text p { max-width: 100%; }
             .hero h1 { font-size: 3.2rem; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
             .contact { flex-direction: column; align-items: stretch; gap: 1rem; }
             .contact .social-links { justify-content: center; }
             .nav-links { gap: 1rem; }
@@ -506,6 +626,8 @@
             .glass-container { padding: 1.4rem 1rem; border-radius: 2rem; }
             .hero .cta-btn { width: 100%; justify-content: center; }
             .hero .cta-group { flex-direction: column; width: 100%; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .gallery-item .image-container { padding-top: 100%; }
             .services-grid { grid-template-columns: 1fr; }
             .nav-bar { flex-direction: column; align-items: flex-start; }
             .nav-right { flex-direction: column; align-items: flex-start; width: 100%; }
@@ -516,7 +638,7 @@
         .glass-container * { position: relative; z-index: 2; }
         .section { scroll-margin-top: 80px; }
 
-        .service-card, .skill-tag, .contact-item, .theme-toggle, .empty-state {
+        .gallery-item, .service-card, .skill-tag, .contact-item, .theme-toggle, .empty-state {
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
         }
@@ -565,11 +687,11 @@
         </div>
         <div class="nav-right">
             <div class="nav-links">
+                <a href="#gallery"><i class="fas fa-grid-2"></i> Gallery</a>
                 <a href="#about"><i class="fas fa-user"></i> About</a>
                 <a href="#services"><i class="fas fa-cube"></i> Services</a>
                 <a href="#testimonials"><i class="fas fa-comment"></i> Testimonials</a>
                 <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-                <a href="#gallery-template"><i class="fas fa-grid-2"></i> Gallery</a>
             </div>
             <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-moon" id="themeIcon"></i>
@@ -589,14 +711,30 @@
             <span>for the next generation</span>
         </div>
         <div class="cta-group">
-            <a href="#gallery-template" class="cta-btn" id="magneticBtn">
-                <span>View gallery</span>
+            <a href="#gallery" class="cta-btn" id="magneticBtn">
+                <span>Explore gallery</span>
                 <i class="fas fa-arrow-right"></i>
             </a>
             <a href="#contact" class="cta-btn" style="background: transparent; border-color: var(--glass-border);">
                 <i class="fas fa-comment"></i>
                 <span>Get in touch</span>
             </a>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="section" id="gallery">
+        <div class="gallery-header">
+            <h3>Gallery</h3>
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ui">UI</button>
+                <button class="filter-btn" data-filter="hud">HUD</button>
+                <button class="filter-btn" data-filter="gfx">GFX</button>
+            </div>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- injected by JS -->
         </div>
     </section>
 
@@ -656,79 +794,6 @@
         </div>
     </section>
 
-    <!-- ===== GALLERY TEMPLATE (Empty) ===== -->
-    <section class="section" id="gallery-template">
-        <h3 style="font-weight: 700; font-size: 1.8rem; margin-bottom: 1.2rem; color: var(--text-primary);">Gallery</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Add your gallery items here. See the instructions below.</p>
-        
-        <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem;">
-            
-            <div class="gallery-item" style="background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 1.8rem; overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 8px 25px var(--shadow-color); cursor: pointer; position: relative;">
-                <div class="image-container" style="width: 100%; padding-top: 75%; position: relative; background: var(--card-bg); overflow: hidden;">
-                    <img src="YOUR-IMAGE-URL-HERE.jpg" alt="Project Title" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" />
-                    <i class="fas fa-image placeholder-icon" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--text-secondary); opacity: 0.1; font-size: 3.5rem;"></i>
-                </div>
-                <span class="item-tag" style="position: absolute; top: 0.8rem; right: 0.8rem; background: var(--card-bg); backdrop-filter: blur(12px); padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.55rem; font-weight: 600; color: var(--text-secondary); border: 1px solid var(--glass-border); text-transform: uppercase; letter-spacing: 0.3px;">TAG</span>
-                <div class="item-info" style="padding: 1rem 1.2rem 1.2rem;">
-                    <h4 style="font-weight: 600; font-size: 1rem; color: var(--text-primary); margin-bottom: 0.1rem;">Project Title</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 300;">Short description</p>
-                </div>
-            </div>
-            
-        </div>
-        -->
-        
-        <!-- ===== INSTRUCTIONS ===== -->
-        <div style="background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 1.8rem; padding: 2rem; backdrop-filter: blur(12px); margin-top: 2rem;">
-            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">📋 How to Add Gallery Items</h4>
-            <ol style="color: var(--text-secondary); font-weight: 300; line-height: 2; padding-left: 1.2rem;">
-                <li><strong style="color: var(--text-primary);">Copy</strong> the gallery item template from the commented section above.</li>
-                <li><strong style="color: var(--text-primary);">Paste</strong> it inside the <code style="background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 4px;">.gallery-grid</code> div.</li>
-                <li><strong style="color: var(--text-primary);">Replace</strong> <code style="background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 4px;">YOUR-IMAGE-URL-HERE.jpg</code> with your image link.</li>
-                <li><strong style="color: var(--text-primary);">Change</strong> the <code style="background: rgba(255,255,255,0.05); padding: 0.2rem 0.5rem; border-radius: 4px;">TAG</code> text (UI, HUD, GFX, etc.).</li>
-                <li><strong style="color: var(--text-primary);">Update</strong> "Project Title" and "Short description" with your own text.</li>
-                <li><strong style="color: var(--text-primary);">Repeat</strong> for each gallery item you want to add.</li>
-            </ol>
-            <p style="color: var(--text-secondary); margin-top: 0.8rem; font-size: 0.9rem;">💡 <strong style="color: var(--text-primary);">Pro tip:</strong> You can add as many items as you want — the grid will automatically adjust!</p>
-            
-            <!-- ===== EXAMPLE GALLERY ITEM (Uncomment to use) ===== -->
-            <!-- 
-            <div style="margin-top: 1.5rem; background: rgba(255,255,255,0.02); border-radius: 1rem; padding: 1rem; border: 1px dashed var(--glass-border);">
-                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">📌 <strong style="color: var(--text-primary);">Example (uncomment the code below):</strong></p>
-                <pre style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 0.8rem; color: var(--text-secondary); font-size: 0.75rem; overflow-x: auto; white-space: pre-wrap; font-family: 'Inter', sans-serif;">
-&lt;div class="gallery-item"&gt;
-    &lt;div class="image-container"&gt;
-        &lt;img src="https://i.imgur.com/your-image.jpg" alt="My Project" /&gt;
-    &lt;/div&gt;
-    &lt;span class="item-tag"&gt;UI&lt;/span&gt;
-    &lt;div class="item-info"&gt;
-        &lt;h4&gt;My Project&lt;/h4&gt;
-        &lt;p&gt;Amazing UI design&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-                </pre>
-            </div>
-            -->
-            
-            <!-- ===== ACTUAL EXAMPLE (Uncomment this to see a real gallery item) ===== -->
-            <!-- 
-            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; margin-top: 1.5rem;">
-                <div class="gallery-item" style="background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 1.8rem; overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 8px 25px var(--shadow-color); cursor: pointer; position: relative;">
-                    <div class="image-container" style="width: 100%; padding-top: 75%; position: relative; background: var(--card-bg); overflow: hidden;">
-                        <img src="https://i.imgur.com/SCmKKJT.jpg" alt="Example Project" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" />
-                        <i class="fas fa-image placeholder-icon" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--text-secondary); opacity: 0.1; font-size: 3.5rem;"></i>
-                    </div>
-                    <span class="item-tag" style="position: absolute; top: 0.8rem; right: 0.8rem; background: var(--card-bg); backdrop-filter: blur(12px); padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.55rem; font-weight: 600; color: var(--text-secondary); border: 1px solid var(--glass-border); text-transform: uppercase; letter-spacing: 0.3px;">EXAMPLE</span>
-                    <div class="item-info" style="padding: 1rem 1.2rem 1.2rem;">
-                        <h4 style="font-weight: 600; font-size: 1rem; color: var(--text-primary); margin-bottom: 0.1rem;">Example Project</h4>
-                        <p style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 300;">This is a demo gallery item</p>
-                    </div>
-                </div>
-            </div>
-            -->
-        </div>
-    </section>
-
     <!-- ===== CONTACT ===== -->
     <section class="contact section" id="contact">
         <div style="display: flex; flex-wrap: wrap; gap: 0.8rem 1.5rem;">
@@ -779,6 +844,47 @@
 
         themeToggle.addEventListener('click', () => {
             setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        // ===== GALLERY DATA =====
+        const galleryItems = [
+            { title: 'Nexus HUD', desc: 'Futuristic UI system', tag: 'hud' },
+            { title: 'Royal Pass', desc: 'Battle pass design', tag: 'ui' },
+            { title: 'Phantom Menu', desc: 'Minimalist dark theme', tag: 'gfx' },
+            { title: 'LaunchPad', desc: 'Onboarding flow', tag: 'ui' },
+            { title: 'Item Shop', desc: '3D carousel shop', tag: 'hud' },
+            { title: 'Squad Hub', desc: 'Social dashboard', tag: 'gfx' },
+            { title: 'Inventory UI', desc: 'Clean item management', tag: 'ui' },
+            { title: 'Settings Panel', desc: 'Modern preferences', tag: 'gfx' },
+        ];
+
+        const grid = document.getElementById('galleryGrid');
+        function renderGallery(filter = 'all') {
+            if (!grid) return;
+            const filtered = filter === 'all' ? galleryItems : galleryItems.filter(item => item.tag === filter);
+            grid.innerHTML = filtered.map((item, index) => `
+                <div class="gallery-item" data-tag="${item.tag}" onclick="alert('💡 Add your image here!\\n\\nReplace with: <img src=\\'your-image-${index+1}.jpg\\' alt=\\'${item.title}\\' />')">
+                    <div class="image-container">
+                        <i class="fas fa-image placeholder-icon"></i>
+                        <!-- <img src="gallery-${index+1}.jpg" alt="${item.title}" /> -->
+                    </div>
+                    <span class="item-tag">${item.tag}</span>
+                    <div class="item-info">
+                        <h4>${item.title}</h4>
+                        <p>${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        renderGallery('all');
+
+        // ===== FILTER BUTTONS =====
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderGallery(this.dataset.filter);
+            });
         });
 
         // ===== MAGNETIC BUTTON =====
@@ -844,10 +950,14 @@
 
 <style>
     .tagline-wrapper span { display: inline-block; }
-    .service-card, .contact, .about-section, .hero {
+    .gallery-item, .service-card, .contact, .about-section, .hero {
         will-change: transform, opacity;
     }
     .cta-btn { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s, border-color 0.4s, box-shadow 0.4s; }
+    .gallery-item .image-container img { display: none; }
+    .gallery-item .image-container:hover img { display: block; }
+    .gallery-item .image-container:hover .placeholder-icon { display: none; }
+    .gallery-item { cursor: pointer; }
     .section { scroll-margin-top: 80px; }
 </style>
 
