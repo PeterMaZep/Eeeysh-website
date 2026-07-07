@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eeeysh · Portfolio</title>
     
-    <!-- ===== FAVICON (Browser Tab Icon) ===== -->
+    <!-- ===== FAVICON ===== -->
     <link rel="icon" type="image/png" href="https://i.imgur.com/SCmKKJT.jpg" />
     <link rel="apple-touch-icon" href="https://i.imgur.com/SCmKKJT.jpg" />
     
@@ -78,7 +78,6 @@
             transition: background 0.4s ease, border 0.4s ease, box-shadow 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Enhanced glass shimmer */
         .glass-container::before {
             content: '';
             position: absolute;
@@ -101,7 +100,6 @@
             100% { transform: translateX(40%) translateY(20%) rotate(8deg); opacity: 0.3; }
         }
 
-        /* Secondary glass overlay for depth */
         .glass-container::after {
             content: '';
             position: absolute;
@@ -122,7 +120,6 @@
         .section:nth-child(4) { animation-delay: 0.20s; }
         .section:nth-child(5) { animation-delay: 0.25s; }
         .section:nth-child(6) { animation-delay: 0.30s; }
-        .section:nth-child(7) { animation-delay: 0.35s; }
 
         @keyframes fadeUp {
             0% { opacity: 0; transform: translateY(35px); }
@@ -508,7 +505,7 @@
             transform: translateY(-4px);
         }
 
-        /* ===== TESTIMONIALS REPLACEMENT ===== */
+        /* ===== TESTIMONIALS ===== */
         .empty-state {
             background: var(--card-bg);
             border: 1px solid var(--glass-border);
@@ -643,7 +640,6 @@
             -webkit-backdrop-filter: blur(16px);
         }
 
-        /* Image fallback styling */
         .about-image {
             display: flex;
             align-items: center;
@@ -734,7 +730,7 @@
             </div>
         </div>
         <div class="gallery-grid" id="galleryGrid">
-            <!-- injected by JS -->
+            <!-- Gallery items injected by JavaScript -->
         </div>
     </section>
 
@@ -783,7 +779,7 @@
         </div>
     </section>
 
-    <!-- ===== TESTIMONIALS REPLACEMENT ===== -->
+    <!-- ===== TESTIMONIALS ===== -->
     <section class="section" id="testimonials">
         <h3 style="font-weight: 700; font-size: 1.8rem; margin-bottom: 0.2rem; color: var(--text-primary);">Testimonials</h3>
         <p style="color: var(--text-secondary); font-weight: 300; margin-bottom: 0.5rem;">What people say about working with me</p>
@@ -848,25 +844,43 @@
 
         // ===== GALLERY DATA =====
         const galleryItems = [
-            { title: 'Nexus HUD', desc: 'Futuristic UI system', tag: 'hud' },
-            { title: 'Royal Pass', desc: 'Battle pass design', tag: 'ui' },
-            { title: 'Phantom Menu', desc: 'Minimalist dark theme', tag: 'gfx' },
-            { title: 'LaunchPad', desc: 'Onboarding flow', tag: 'ui' },
-            { title: 'Item Shop', desc: '3D carousel shop', tag: 'hud' },
-            { title: 'Squad Hub', desc: 'Social dashboard', tag: 'gfx' },
-            { title: 'Inventory UI', desc: 'Clean item management', tag: 'ui' },
-            { title: 'Settings Panel', desc: 'Modern preferences', tag: 'gfx' },
+            { 
+                title: 'X Post', 
+                desc: 'A Figma made UI for X posts', 
+                tag: 'ui',
+                img: 'https://i.imgur.com/VSGbdfi.jpeg'
+            },
+            { 
+                title: 'Modern Shop UI', 
+                desc: 'A modern shop UI made using Figma', 
+                tag: 'ui',
+                img: 'https://i.imgur.com/lJqudQp.jpeg'
+            },
+            { 
+                title: 'Stud Style Shop UI', 
+                desc: 'A stud-style shop UI made using Figma', 
+                tag: 'ui',
+                img: 'https://i.imgur.com/D1y4C8h.jpeg'
+            },
+            { 
+                title: 'Calendar UI', 
+                desc: 'Calendar UI for daily rewards made using Figma', 
+                tag: 'ui',
+                img: 'https://i.imgur.com/lK5Vx1z.jpeg'
+            }
         ];
 
         const grid = document.getElementById('galleryGrid');
+        
         function renderGallery(filter = 'all') {
             if (!grid) return;
             const filtered = filter === 'all' ? galleryItems : galleryItems.filter(item => item.tag === filter);
-            grid.innerHTML = filtered.map((item, index) => `
-                <div class="gallery-item" data-tag="${item.tag}" onclick="alert('💡 Add your image here!\\n\\nReplace with: <img src=\\'your-image-${index+1}.jpg\\' alt=\\'${item.title}\\' />')">
+            
+            grid.innerHTML = filtered.map(item => `
+                <div class="gallery-item" data-tag="${item.tag}">
                     <div class="image-container">
+                        <img src="${item.img}" alt="${item.title}" />
                         <i class="fas fa-image placeholder-icon"></i>
-                        <!-- <img src="gallery-${index+1}.jpg" alt="${item.title}" /> -->
                     </div>
                     <span class="item-tag">${item.tag}</span>
                     <div class="item-info">
@@ -876,6 +890,8 @@
                 </div>
             `).join('');
         }
+        
+        // Load gallery
         renderGallery('all');
 
         // ===== FILTER BUTTONS =====
@@ -902,7 +918,7 @@
             });
         }
 
-        // ===== PARALLAX TILT ON GLASS =====
+        // ===== PARALLAX TILT =====
         const container = document.querySelector('.glass-container');
         if (container) {
             container.addEventListener('mousemove', function(e) {
@@ -931,7 +947,7 @@
             tagline.innerHTML = words.join('');
         }
 
-        // ===== SMOOTH SCROLL FOR NAV =====
+        // ===== SMOOTH SCROLL =====
         document.querySelectorAll('.nav-links a, .cta-btn[href^="#"]').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -954,8 +970,8 @@
         will-change: transform, opacity;
     }
     .cta-btn { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s, border-color 0.4s, box-shadow 0.4s; }
-    .gallery-item .image-container img { display: none; }
-    .gallery-item .image-container:hover img { display: block; }
+    .gallery-item .image-container img { display: block; }
+    .gallery-item .image-container:hover img { transform: scale(1.06); }
     .gallery-item .image-container:hover .placeholder-icon { display: none; }
     .gallery-item { cursor: pointer; }
     .section { scroll-margin-top: 80px; }
