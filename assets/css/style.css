@@ -778,3 +778,12 @@ body {
     display: block;
     margin-bottom: 0.5rem;
 }
+.tagline-wrapper span { display: inline-block; }
+.gallery-item, .store-item, .service-card, .contact, .about-section, .hero {
+    will-change: transform, opacity;
+}
+.cta-btn { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s, border-color 0.4s, box-shadow 0.4s; }
+.gallery-item .image-container img, .store-item .image-container img { display: block; }
+.gallery-item .image-container:hover img, .store-item .image-container:hover img { transform: scale(1.06); }
+.gallery-item, .store-item { cursor: pointer; }
+.section { scroll-margin-top: 80px; }
