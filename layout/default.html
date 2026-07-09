@@ -10,12 +10,19 @@
       {{ site.title }}
     {% endif %}
   </title>
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+  <link rel="stylesheet" href="{{ site.url }}/assets/css/style.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/SCmKKJT.jpg" />
+  <link rel="apple-touch-icon" href="https://i.imgur.com/SCmKKJT.jpg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="wrapper">
-      <a class="site-title" href="{{ site.baseurl }}/">
+      <a class="site-title" href="{{ site.url }}/">
         {{ site.title }}
       </a>
       <nav class="site-nav">
